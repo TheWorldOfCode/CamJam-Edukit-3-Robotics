@@ -1,6 +1,7 @@
 import time
 from gpiozero import DistanceSensor # imported so we can get the distances.
 import os
+import sys
 Libraries
 
 #Define GPIO pins for the distance sensor
@@ -10,11 +11,12 @@ pinEcho = 18
 #setting up the imported functions
 sensor = DistanceSensor(echo = pinEcho, trigger = pinTrigger)
 
+bash_variable_list = getopt.getopt(sys.argv)
 
 # Distance Variables
-how_near = 5.0
-how_far = 10.0
-good_distance = 7.5
+how_near = bash_variable_list[0]
+how_far = bash_variable_list[1]
+good_distance = bash_variable_list[2]
 
 
 #Check to see if it is too close to the wall - returns true if it is
