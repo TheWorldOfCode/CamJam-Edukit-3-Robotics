@@ -32,7 +32,7 @@ fi
 
 if [ $1 = getdist ]
 then
-echo "#return the last distance value from the distance sensor"
+result=python ./ultra_sound getdist.py
 fi
 
 if [ $1 = getmotors ]
@@ -49,5 +49,5 @@ if [ $1 = stop ]
 then
 echo "# stop robot"
 fi
-
+echo $result
 exit 0
