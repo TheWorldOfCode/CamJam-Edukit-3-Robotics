@@ -1,6 +1,6 @@
 import time
 from gpiozero import DistanceSensor # imported so we can get the distances.
-import argparse # imported to get input from a bash script
+import os
 Libraries
 
 #Define GPIO pins for the distance sensor
@@ -13,7 +13,9 @@ sensor = DistanceSensor(echo = pinEcho, trigger = pinTrigger)
 
 # Distance Variables
 how_near = 5.0
-how_far = 15.0
+how_far = 10.0
+good_distance = 7.5
+
 
 #Check to see if it is too close to the wall - returns true if it is
 def isNearWall(local_how_near):
@@ -21,16 +23,41 @@ def isNearWall(local_how_near):
 
     if distance < local_how_near:
         return True
-    else
+    else:
         return False
 
 #Check to see if it is too far to the wall - returns true if it is
-def isTooFarFromWall(local_how_far)
+def isTooFarFromWall(local_how_far):
     distance = sensor.distance * 100
 
     if distance > local_how_far:
         return True
-    else
+    else:
+        return False
+def isItGood(local_good_dist):
+    distance = sensor.distance * 100
+
+    if distance == local_good_dist:
+        return True
+    else:
         return False
 
-def if
+while True:
+    if isNearWall(how_near):
+        system("./motor_control motor_control.sh -l 20")
+        time.sleep(0.1)
+        system("./motor_control motor_control.sh -s 20")
+        while isItGood(good_distance) is not True:
+            pass
+        system("./motor_control motor_control.sh -h 20")
+        time.sleep(0.1)
+        system("./motor_control motor_control.sh -s 20")
+    if isTooFarFromWall(local_how_far):
+        system("./motor_control motor_control.sh -h 20")
+        time.sleep(0.1)
+        system("./motor_control motor_control.sh -s 20")
+        while isItGood(good_distance) is not True:
+            pass
+        system("./motor_control motor_control.sh -l 20")
+        time.sleep(0.1)
+        system("./motor_control motor_control.sh -s 20")
