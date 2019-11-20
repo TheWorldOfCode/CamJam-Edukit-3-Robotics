@@ -1,8 +1,8 @@
 #! /bin/bash
 
-while getops "h" option; do
+while getopts "h" option; do
 
-	case"{option}" in
+	case "${option}" in
 		h)
 			help=1
 			;;
@@ -11,9 +11,9 @@ while getops "h" option; do
 	esac
 done
 
-if ["x$help" != "x"]
+if [ "x$help" != "x" ]
 then
-        echo "This is the awesome helpscreen, showing the supported arguments       "
+        echo "This is the awesome help screen, showing the supported arguments       "
 	echo "**********************************************************************"
 	echo "getdist :returns the last distance value from the distance sensor     "
 	echo "getmotors :returns the current control values from the distance sensor"
@@ -29,22 +29,25 @@ then
 fi
 
 #Initialize command with the first argument
-command=$1
 
-if [command = getdist]
-#return the last distance value from the distance sensor
+if [ $1 = getdist ]
+then
+echo "#return the last distance value from the distance sensor"
 fi
 
-if [command = getmotors]
-#return the current control values used on the motors
+if [ $1 = getmotors ]
+then
+echo "#return the current control values used on the motors"
 fi
 
-if [command = start]
-# start wall following behavior
+if [ $1 = start ]
+then
+echo "# start wall following behavior"
 fi
 
-if [command = stop]
-# stop robot
+if [ $1 = stop ]
+then
+echo "# stop robot"
 fi
 
 exit 0
