@@ -48,6 +48,12 @@ if [ "$#" -eq 0 ]; then
 	error 1
 fi
 
+
+pigs pfs $leftBackward_GPIO $pwmfrequency
+pigs pfs $leftforward_GPIO $pwmfrequency
+pigs pfs $rightBackward_GPIO $pwmfrequency
+pigs pfs $rightforward_GPIO $pwmfrequency
+
 if [ "x$help" != "x" ]; then
 
 	echo "This is the help screen of motor control              "
@@ -62,48 +68,48 @@ if [ "x$help" != "x" ]; then
 elif [ "x$same" != "x" ]; then 
 
 	if [ $same < 0 ]; then	
-		pigs hp $leftBackward_GPIO $pwmfrequency $(($same * -1)) 
-		pigs hp $rightBackward_GPIO $pwmfrequency $(($same * -1)) 
-		pigs hp $rightForward_GPIO $pwmfrequency 0
-		pigs hp $leftForward_GPIO $pwmfrequency 0
+		pigs pwm $leftBackward_GPIO  $(($same * -1)) 
+		pigs pwm $rightBackward_GPIO  $(($same * -1)) 
+		pigs pwm $rightForward_GPIO  0
+		pigs pwm $leftForward_GPIO  0
 	elif [ $same > 0 ]; then
-		pigs hp $leftBackward_GPIO $pwmfrequency 0
-		pigs hp $rightBackward_GPIO $pwmfrequency 0
-		pigs hp $leftForward_GPIO $pwmfrequency $same
-		pigs hp $rightForward_GPIO $pwmfrequency $same
+		pigs pwm $leftBackward_GPIO  0
+		pigs pwm $rightBackward_GPIO  0
+		pigs pwm $leftForward_GPIO  $same
+		pigs pwm $rightForward_GPIO  $same
 	else
-		pigs hp $leftBackward_GPIO $pwmfrequency 0
-		pigs hp $leftForward_GPIO $pwmfrequency 0
-		pigs hp $rightBackward_GPIO $pwmfrequency 0
-		pigs hp $rightForward_GPIO $pwmfrequency 0
+		pigs pwm $leftBackward_GPIO  0
+		pigs pwm $leftForward_GPIO  0
+		pigs pwm $rightBackward_GPIO  0
+		pigs pwm $rightForward_GPIO  0
 	fi
 
 else 
 	if [ "x$left" != "x" ]; then
 		if [ $left < 0 ]; then	
-			pigs hp $leftBackward_GPIO $pwmfrequency $(($left * -1)) 
-			pigs hp $leftForward_GPIO $pwmfrequency 0
+			pigs pwm $leftBackward_GPIO  $(($left * -1)) 
+			pigs pwm $leftForward_GPIO  0
 		elif [ $left > 0 ]; then
-			pigs hp $leftBackward_GPIO $pwmfrequency 0
-			pigs hp $leftForward_GPIO $pwmfrequency $left
+			pigs pwm $leftBackward_GPIO  0
+			pigs pwm $leftForward_GPIO  $left
 		else
-			pigs hp $leftBackward_GPIO $pwmfrequency 0
-			pigs hp $leftForward_GPIO $pwmfrequency 0
+			pigs pwm $leftBackward_GPIO  0
+			pigs pwm $leftForward_GPIO  0
 		fi
 	fi
 
 	if [ "x$right" != "x" ]; then
 		if [ $right < 0 ]; then	
-			pigs hp $rightBackward_GPIO $pwmfrequency $(($right * -1)) 
-			pigs hp $rightForward_GPIO $pwmfrequency 0
+			pigs pwm $rightBackward_GPIO  $(($right * -1)) 
+			pigs pwm $rightForward_GPIO  0
 		elif [ $left > 0 ]; then
-			pigs hp $rightBackward_GPIO $pwmfrequency 0
-			pigs hp $rightForward_GPIO $pwmfrequency $right
+			pigs pwm $rightBackward_GPIO  0
+			pigs pwm $rightForward_GPIO  $right
 		else
-			pigs hp $leftBackward_GPIO $pwmfrequency 0
-			pigs hp $leftForward_GPIO $pwmfrequency 0
-			pigs hp $rightBackward_GPIO $pwmfrequency 0
-			pigs hp $rightForward_GPIO $pwmfrequency 0
+
+			pigs pwm $leftForward_GPIO  0
+			pigs pwm $rightBackward_GPIO  0
+			pigs pwm $rightForward_GPIO  0
 		fi
 	fi
 
@@ -136,9 +142,9 @@ else
 
 
 	if [ "x$stop" != "x" ]; then
-		pigs hp $leftBackward_GPIO $pwmfrequency 0
-		pigs hp $leftForward_GPIO $pwmfrequency 0
-		pigs hp $rightBackward_GPIO $pwmfrequency 0
-		pigs hp $rightForward_GPIO $pwmfrequency 0
+		pigs pwm $leftBackward_GPIO  0
+		pigs pwm $leftForward_GPIO  0
+		pigs pwm $rightBackward_GPIO  0
+		pigs pwm $rightForward_GPIO  0
 	fi
 fi
