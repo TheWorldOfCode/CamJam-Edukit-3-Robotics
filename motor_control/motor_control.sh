@@ -117,8 +117,8 @@ else
 	if [ "x$get" != "x" ]; then
 
 		if [ "$get" = "r" ]; then
-			b=$((pigs prg $rightBackward_GPIO))
-			f=$((pigs prg $rightForward_GPIO))
+			b=$((pigs gdc $rightBackward_GPIO))
+			f=$((pigs gdc $rightForward_GPIO))
 
 			if [ $f -eq 0 ]; then
 				echo $b
@@ -127,8 +127,8 @@ else
 			fi
 
 		elif [ $get = "l" ]; then
-			b=$((pigs prg $lefttBackward_GPIO))
-			f=$((pigs prg $rightforward_GPIO))
+			b=$((pigs gdc $lefttBackward_GPIO))
+			f=$((pigs gdc $rightforward_GPIO))
 
 			if [ $f -eq 0 ]; then
 				echo $b
