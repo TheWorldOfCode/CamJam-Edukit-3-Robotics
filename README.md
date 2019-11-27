@@ -13,8 +13,8 @@ echo getdist | socat tcp:192.168.99.<group number>
 
 ### Requirement 3
 The robot should accept following commands:  
-´´´bash
-1. getdist ´´´- return the last distance value from the distance sensor
+``` bash
+1. getdist ```- return the last distance value from the distance sensor
 2. getmotors - return the current control values used on the motors
 3. start - start wall following behavior
 4. stop - stop robot
