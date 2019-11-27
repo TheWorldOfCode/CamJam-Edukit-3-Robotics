@@ -44,15 +44,15 @@ while getopts "s:l:r:qg:h" option; do
 done
 
 if [ "$#" -eq 0 ]; then
-	echo "No argument, do it right or don't do it at all" > /dev/stderr
+	echo "No argument, do it right or don't do it at all" -gt /dev/stderr
 	error 1
 fi
 
 
 pigs pfs $leftBackward_GPIO $pwmfrequency
-pigs pfs $leftforward_GPIO $pwmfrequency
+pigs pfs $leftForward_GPIO $pwmfrequency
 pigs pfs $rightBackward_GPIO $pwmfrequency
-pigs pfs $rightforward_GPIO $pwmfrequency
+pigs pfs $rightForward_GPIO $pwmfrequency
 
 if [ "x$help" != "x" ]; then
 
@@ -67,12 +67,12 @@ if [ "x$help" != "x" ]; then
 	echo "         -h          This help screen                 "
 elif [ "x$same" != "x" ]; then 
 
-	if [ $same < 0 ]; then	
+	if [ $same -lt 0 ]; then	
 		pigs pwm $leftBackward_GPIO  $(($same * -1)) 
 		pigs pwm $rightBackward_GPIO  $(($same * -1)) 
 		pigs pwm $rightForward_GPIO  0
 		pigs pwm $leftForward_GPIO  0
-	elif [ $same > 0 ]; then
+	elif [ $same -gt 0 ]; then
 		pigs pwm $leftBackward_GPIO  0
 		pigs pwm $rightBackward_GPIO  0
 		pigs pwm $leftForward_GPIO  $same
@@ -86,10 +86,10 @@ elif [ "x$same" != "x" ]; then
 
 else 
 	if [ "x$left" != "x" ]; then
-		if [ $left < 0 ]; then	
+		if [ $left -lt 0 ]; then	
 			pigs pwm $leftBackward_GPIO  $(($left * -1)) 
 			pigs pwm $leftForward_GPIO  0
-		elif [ $left > 0 ]; then
+		elif [ $left -gt 0 ]; then
 			pigs pwm $leftBackward_GPIO  0
 			pigs pwm $leftForward_GPIO  $left
 		else
@@ -99,10 +99,10 @@ else
 	fi
 
 	if [ "x$right" != "x" ]; then
-		if [ $right < 0 ]; then	
+		if [ $right -lt 0 ]; then	
 			pigs pwm $rightBackward_GPIO  $(($right * -1)) 
 			pigs pwm $rightForward_GPIO  0
-		elif [ $left > 0 ]; then
+		elif [ $left -gt 0 ]; then
 			pigs pwm $rightBackward_GPIO  0
 			pigs pwm $rightForward_GPIO  $right
 		else
