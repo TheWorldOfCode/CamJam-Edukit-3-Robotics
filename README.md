@@ -4,7 +4,7 @@ A wall follow robot
 
 ## Requirements
 1. The Pi should join an ad-hoc network called pibot
-2. The Pi’s ip address should be  192.168.99.<group number> 
+2. The Pi’s ip address should be  192.168.99.group_number 
 3. A TCP server should run on port 8080 and accept some specific
 4. For example, the TCP server should accept commands like this:
 echo getdist | socat tcp:192.168.99.<group number>
