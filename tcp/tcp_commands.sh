@@ -42,11 +42,13 @@ fi
 
 if [ $1 = start ]
 then
+	$(pyhton3 ../ultra_sound/interface_ultrasound.py)
 echo "# start wall following behavior"
 fi
 
 if [ $1 = stop ]
 then
+	$(bash ../motor_control/motor_control.sh  -s 0)
 echo "# stop robot"
 fi
 echo $result
