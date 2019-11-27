@@ -7,7 +7,7 @@ A wall follow robot
 2. The Pi’s ip address should be  192.168.99.<group number> 
 3. A TCP server should run on port 8080 and accept the following commands:
   
-getdist - return the last distance value from the distance sensor
+  getdist - return the last distance value from the distance sensor
 getmotors - return the current control values used on the motors
 start - start wall following behavior
 stop - stop robot
