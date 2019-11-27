@@ -10,8 +10,8 @@
 
 rightForward_GPIO=10
 rightBackward_GPIO=9
-leftForward_GPIO=8
-leftBackward_GPIO=7
+leftForward_GPIO=7
+leftBackward_GPIO=8
 pwmfrequency=100
 
 
