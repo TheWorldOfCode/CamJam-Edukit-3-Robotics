@@ -49,10 +49,10 @@ if [ "$#" -eq 0 ]; then
 fi
 
 
-pigs pfs $leftBackward_GPIO $pwmfrequency
-pigs pfs $leftForward_GPIO $pwmfrequency
-pigs pfs $rightBackward_GPIO $pwmfrequency
-pigs pfs $rightForward_GPIO $pwmfrequency
+pigs pfs $leftBackward_GPIO $pwmfrequency > /dev/null
+pigs pfs $leftForward_GPIO $pwmfrequency >/dev/null
+pigs pfs $rightBackward_GPIO $pwmfrequency >/dev/null
+pigs pfs $rightForward_GPIO $pwmfrequency >/dev/null
 
 if [ "x$help" != "x" ]; then
 
