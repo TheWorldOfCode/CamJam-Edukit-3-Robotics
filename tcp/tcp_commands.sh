@@ -32,12 +32,12 @@ fi
 
 if [ $1 = getdist ]
 then
-result=python ./ultra_sound getdist.py
+	result=$(python3 ../ultra_sound/getdist.py)
 fi
 
 if [ $1 = getmotors ]
 then
-echo "#return the current control values used on the motors"
+	result="$(bash ../motor_control/motor_control.sh  -g l) $(bash ../motor_control/motor_control.sh  -g r)"
 fi
 
 if [ $1 = start ]
