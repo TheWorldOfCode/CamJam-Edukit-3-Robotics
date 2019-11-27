@@ -32,7 +32,7 @@ fi
 
 if [ $1 = getdist ]
 then
-	result=$(python3 ../ultra_sound/getdist.py)
+	result=$(python3 ../ultra_sound/getDist.py)
 fi
 
 if [ $1 = getmotors ]
