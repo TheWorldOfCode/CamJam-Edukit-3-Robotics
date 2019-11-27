@@ -36,5 +36,5 @@ stop will stop the robot
 #### TCP server
 The following command starts a TCP server at the PI
 ``` bash
-socat tcp-listen:8080,reuseaddr,fork exec:''
+socat tcp-listen:8080,reuseaddr,fork exec:'tcp_commands.sh'
 ```
