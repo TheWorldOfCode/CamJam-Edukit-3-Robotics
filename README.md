@@ -16,13 +16,22 @@ The robot should accept following commands:
 ``` bash
 getdist 
 ```
-return the last distance value from the distance sensor
-2. getmotors - return the current control values used on the motors
-3. start - start wall following behavior
-4. stop - stop robot
+getdist returns the last distance value from the distance sensor.
 
-#### Mapping editor
-As it appears from the "Project Description.pdf" the tools make it easier 
 ``` bash
-sudo apt install openctm-tools pstoedit potrace
+getmotors
 ```
+getmotors returns the current control values used on the motors
+
+``` bash
+start
+```
+start will start wall following behavior
+
+``` bash
+stop
+```
+stop will stop the robot
+
+#### TCP server
+
