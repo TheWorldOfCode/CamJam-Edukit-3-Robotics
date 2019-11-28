@@ -21,35 +21,42 @@ then
 	echo "stop :stop the robot                                                  " 
 fi
 
-if [ "$#" = 0 ]
-then
-	#Script exits if no arguments passed
-	echo "No arguments passed, please behave yourself and/or try the -h option for help." > /dev/stderr
-	exit 1
+if [ -t 1 ]; then
+     read c
+else
+     c=$1
+	if [ "$#" = 0 ]
+	then
+		#Script exits if no arguments passed
+		echo "No arguments passed, please behave yourself and/or try the -h option for help." > /dev/stderr
+		exit 1
+	fi
 fi
+echo $c
 
 #Initialize command with the first argument
 
-if [ $1 = getdist ]
+if [ $c = getdist ]
 then
-	result=$(python3 ../ultra_sound/getDist.py)
+	result=$(python3 /home/pi/CamJam-Edukit-3-Robotics/ultra_sound/getDist.py)
 fi
 
-if [ $1 = getmotors ]
+if [ $c = getmotors ]
 then
-	result="$(bash ../motor_control/motor_control.sh  -g l) $(bash ../motor_control/motor_control.sh  -g r)"
+	result="$(bash /home/pi/CamJam-Edukit-3-Robotics/motor_control/motor_control.sh  -g l) $(bash /home/pi/CamJam-Edukit-3-Robotics/motor_control/motor_control.sh  -g r)"
 fi
 
-if [ $1 = start ]
+if [ $c = start ]
 then
-	$(pyhton3 ../ultra_sound/interface_ultrasound.py)
-echo "# start wall following behavior"
+	$(pyhton3 /home/pi/CamJam-Edukit-3-Robotics/ultra_sound/interface_ultrasound.py)
+# echo "# start wall following behavior"
 fi
 
-if [ $1 = stop ]
+if [ $c = stop ]
 then
-	$(bash ../motor_control/motor_control.sh  -s 0)
-echo "# stop robot"
+	$(bash /home/pi/CamJam-Edukit-3-Robotics/motor_control/motor_control.sh  -s 0)
+        killall python3
+#echo "# stop robot"
 fi
 echo $result
 exit 0

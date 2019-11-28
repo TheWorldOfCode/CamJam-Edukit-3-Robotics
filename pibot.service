@@ -1,0 +1,9 @@
+[Unit]
+Description="Pibot Setup"
+After=multi-user.target
+
+[Service]
+ExecStart=/bin/bash /home/pi/CamJam-Edukit-3-Robotics/server.sh
+
+[Install]
+WantedBy=multi-user.target
