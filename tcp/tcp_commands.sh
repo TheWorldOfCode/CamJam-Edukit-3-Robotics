@@ -1,10 +1,13 @@
 #! /bin/bash
 
-while getopts "h" option; do
+while getopts "hs" option; do
 
 	case "${option}" in
 		h)
 			help=1
+			;;
+		s) 
+			s=1
 			;;
 		*)
 			;;
@@ -23,6 +26,8 @@ fi
 
 if [ -t 1 ]; then
      read c
+elif [ "x$s" != "x" ]; then
+     read c
 else
      c=$1
 	if [ "$#" = 0 ]
@@ -32,31 +37,32 @@ else
 		exit 1
 	fi
 fi
-echo $c
 
 #Initialize command with the first argument
 
 if [ $c = getdist ]
 then
-	result=$(python3 /home/pi/CamJam-Edukit-3-Robotics/ultra_sound/getDist.py)
+	echo "# get distance"
+	tail -n1 aske
 fi
 
 if [ $c = getmotors ]
 then
-	result="$(bash /home/pi/CamJam-Edukit-3-Robotics/motor_control/motor_control.sh  -g l) $(bash /home/pi/CamJam-Edukit-3-Robotics/motor_control/motor_control.sh  -g r)"
+	echo "# get motor values"
+	echo "$(bash /home/pi/CamJam-Edukit-3-Robotics/motor_control/motor_control.sh  -g l) $(bash /home/pi/CamJam-Edukit-3-Robotics/motor_control/motor_control.sh  -g r)"
 fi
 
 if [ $c = start ]
 then
-	$(pyhton3 /home/pi/CamJam-Edukit-3-Robotics/ultra_sound/interface_ultrasound.py)
-# echo "# start wall following behavior"
+	 echo "# start wall following behavior"
+	$(python3 /home/pi/CamJam-Edukit-3-Robotics/ultra_sound/interface_ultrasound.py) 
 fi
 
 if [ $c = stop ]
 then
+	echo "# stop robot"
 	$(bash /home/pi/CamJam-Edukit-3-Robotics/motor_control/motor_control.sh  -s 0)
         killall python3
-#echo "# stop robot"
 fi
-echo $result
+
 exit 0

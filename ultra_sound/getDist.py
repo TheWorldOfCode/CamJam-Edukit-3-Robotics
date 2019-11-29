@@ -10,4 +10,4 @@ sensor = DistanceSensor(echo = pinEcho, trigger = pinTrigger)
 
 distance = sensor.distance *100
 
-print(str(distance))
+print(distance)
