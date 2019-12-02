@@ -56,8 +56,8 @@ At the controlling PC the commands can be executed at the PI by this command typ
 ``` bash
 echo getdist | socat tcp:192.168.99.3
 ```
-
-### Motor control
+### Requirement 4
+#### Motor control
 In the folder motor_control is the script motor_control.sh which controls the motor. This script have servel options
 ``` bash 
 motor_control.sh -s 100
