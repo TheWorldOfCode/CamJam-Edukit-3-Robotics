@@ -57,6 +57,11 @@ At the controlling PC the commands can be executed at the PI by this command typ
 echo getdist | socat tcp:192.168.99.3
 ```
 ### Requirement 4
+In the folder ultra_sound are a python script that are named `interface_ultrasound`. This script is used to follow the wall, just run the follow command and the script will do the rest 
+``` bash
+python3 interface_ultrasound.py
+```
+The script control the motor through the motor_control.sh 
 #### Motor control
 In the folder motor_control is the script motor_control.sh which controls the motor. This script have servel options
 ``` bash 
