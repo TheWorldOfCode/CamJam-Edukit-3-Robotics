@@ -102,12 +102,10 @@ else
 		if [ $right -lt 0 ]; then	
 			pigs pwm $rightBackward_GPIO  $(($right * -1)) 
 			pigs pwm $rightForward_GPIO  0
-		elif [ $left -gt 0 ]; then
+		elif [ $right -gt 0 ]; then
 			pigs pwm $rightBackward_GPIO  0
 			pigs pwm $rightForward_GPIO  $right
 		else
-
-			pigs pwm $leftForward_GPIO  0
 			pigs pwm $rightBackward_GPIO  0
 			pigs pwm $rightForward_GPIO  0
 		fi
